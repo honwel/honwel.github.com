@@ -1,9 +1,9 @@
 ﻿---
 layout: post
 title: 重新记录博客
-description: "重新开始写博客，记录经验与分享"
+description: ""
 category: 随笔
-tags: [记录, 分享]
+tags: [记录]
 ---
 {% include JB/setup %}
 
