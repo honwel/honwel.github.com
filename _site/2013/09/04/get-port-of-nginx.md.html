@@ -4,9 +4,9 @@
   <head>
     <meta charset="utf-8">
     
-    <title>Hong Wei's Personal Website</title>
+    <title>用Nginx做正向代理时获取其向外连接的IP和端口 | Hong Wei's Personal Website</title>
     
-    
+    <meta name="description" content="获取向外连接的IP和端口">
     <meta name="author" content="honwel">
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
@@ -156,11 +156,9 @@
 
       <div class="content">
         
-
-
 <div class="row post">
   <div class="span8">
-    <h1 class="title"><a href="/2013/09/04/get-port-of-nginx.md.html" title="用Nginx做正向代理时获取其向外连接的IP和端口">用Nginx做正向代理时获取其向外连接的IP和端口</a> </h1>
+    <h1 class="title">用Nginx做正向代理时获取其向外连接的IP和端口</h1>
     
 
 有时候你可能需要知道Nginx向外连接时用了哪个端口，这些端口是当connect(ngx_event_connect.c - ngx_event_connect_peer(ngx_peer_connection_t \*pc))时是由系统自动分配的。
@@ -228,10 +226,14 @@ Nginx作为正向代理，我们需要获取的时它向外连接时的IP和端�
 所以你可以加在ngx_http_upstream_connect执行之后。最后你可以直接在配置文件中使用变量$upstream_laddr了。
 
     <ul class="pager">
-      <li class="next"><a href="/archive.html" title="所有文章">查看所有文章 &rarr;</a></li>
+    
+      <li class="previous"><a href="/2013/09/04/get-port-of-nginx.html" title="用Nginx做正向代理时获取其向外连接的IP和端口">&larr; 用Nginx做正向代理时获取其向外连接的IP和端口</a></li>
+    
+    
     </ul>
+    
   </div>
-
+  
   <div class="span4 sidebar">
     <h4 class="date">发布日期：<span>04 September 2013</span></h4>
 

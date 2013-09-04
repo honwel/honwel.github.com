@@ -69,6 +69,4 @@ Nginx作为正向代理，我们需要获取的时它向外连接时的IP和端�
   
 这段代码你需要加入在ngx_event_connect_peer执行之后，为了了解Nginx的upstream 执行的顺利，下面有一张不太严谨的流程图可以参考：
 
-![nginx 请求流程图]({{ site.img_url }}/upstream-nginx.png)
-
 所以你可以加在ngx_http_upstream_connect执行之后。最后你可以直接在配置文件中使用变量$upstream_laddr了。

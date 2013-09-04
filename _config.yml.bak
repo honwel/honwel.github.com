@@ -17,8 +17,6 @@ author :
   github : honwel
   twitter : honwel
 
-img_url : http://www.honwel.net/assets/images
-
 # The production_url is only used when full-domain names are needed
 # such as sitemap.txt 
 # Most places will/should use BASE_PATH to make the urls
