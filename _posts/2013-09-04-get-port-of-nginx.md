@@ -1,4 +1,4 @@
-﻿---
+---
 layout: post
 title: 用Nginx做正向代理时获取其向外连接的IP和端口
 description: "获取向外连接的IP和端口"
