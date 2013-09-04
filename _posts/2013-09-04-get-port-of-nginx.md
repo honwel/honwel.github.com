@@ -57,17 +57,17 @@ Nginx作为正向代理，我们需要获取的时它向外连接时的IP和端�
 
 同时，在 ngx_event_connect_peer(ngx_peer_connection_t *pc) 连接后要通过getsockname函数获得IP信息，并存储在local_sockaddr变量中，像这样：
 
-		if (getsockname(c->fd, (struct sockaddr *) &sa, &len) == -1) {
+	if (getsockname(c->fd, (struct sockaddr *) &sa, &len) == -1) {
     		ngx_connection_error(c, ngx_socket_errno, "getsockname() failed");
-        return NGX_ERROR;
-    }
+        	return NGX_ERROR;
+    	}
 
-    c->local_sockaddr = ngx_palloc(c->pool, len);
-    if (c->local_sockaddr == NULL) {
-        return NGX_ERROR;
-    }
+    	c->local_sockaddr = ngx_palloc(c->pool, len);
+    	if (c->local_sockaddr == NULL) {
+        	return NGX_ERROR;
+    	}
 
-    ngx_memcpy(c->local_sockaddr, &sa, len);
+    	ngx_memcpy(c->local_sockaddr, &sa, len);
     
 这段代码你需要加入在ngx_event_connect_peer执行之后，为了了解Nginx的upstream 执行的顺利，下面有一张不太严谨的流程图可以参考：
 
