@@ -1,21 +1,21 @@
----
+ï»¿---
 layout: post
-title: ÓÃNginx×öÕıÏò´úÀíÊ±»ñÈ¡ÆäÏòÍâÁ¬½ÓµÄIPºÍ¶Ë¿Ú
-description: "»ñÈ¡ÏòÍâÁ¬½ÓµÄIPºÍ¶Ë¿Ú"
-category: ¼¼Êõ
-tags: [ÕıÏò´úÀí, Nginx, IP, ¶Ë¿Ú]
+title: ç”¨Nginxåšæ­£å‘ä»£ç†æ—¶è·å–å…¶å‘å¤–è¿æ¥çš„IPå’Œç«¯å£
+description: "è·å–å‘å¤–è¿æ¥çš„IPå’Œç«¯å£"
+category: æŠ€æœ¯
+tags: [æ­£å‘ä»£ç†, Nginx, IP, ç«¯å£]
 ---
 {% include JB/setup %}
 
-ÓĞÊ±ºòÄã¿ÉÄÜĞèÒªÖªµÀNginxÏòÍâÁ¬½ÓÊ±ÓÃÁËÄÄ¸ö¶Ë¿Ú£¬ÕâĞ©¶Ë¿ÚÊÇµ±connect(ngx_event_connect.c - ngx_event_connect_peer(ngx_peer_connection_t *pc))Ê±ÊÇÓÉÏµÍ³×Ô¶¯·ÖÅäµÄ¡£Ó¦ÓÃ³¡¾°ÊÇÕâÑùµÄ£º
+æœ‰æ—¶å€™ä½ å¯èƒ½éœ€è¦çŸ¥é“Nginxå‘å¤–è¿æ¥æ—¶ç”¨äº†å“ªä¸ªç«¯å£ï¼Œè¿™äº›ç«¯å£æ˜¯å½“connect(ngx_event_connect.c - ngx_event_connect_peer(ngx_peer_connection_t *pc))æ—¶æ˜¯ç”±ç³»ç»Ÿè‡ªåŠ¨åˆ†é…çš„ã€‚åº”ç”¨åœºæ™¯æ˜¯è¿™æ ·çš„ï¼š
 
 [Client]->[Nginx]->[Internet]
 
-Nginx×÷ÎªÕıÏò´úÀí£¬ÎÒÃÇĞèÒª»ñÈ¡µÄÊ±ËüÏòÍâÁ¬½ÓÊ±µÄIPºÍ¶Ë¿Ú£¬IPºÜºÃ»ñÈ¡£¬¿É´ÓNginxÏµÍ³±äÁ¿ÀïÃæ»ñµÃ£¬¶øÇÒ²»»á¸Ä±ä£¬µ«ÊÇ¶Ë¿ÚÊÇÓĞÏµÍ³·ÖÅäµÄ£¬Nginx±¾ÉíÒ²Ã»ÓĞÏÖ³ÉµÄ±äÁ¿¿ÉÓÃ¡£
+Nginxä½œä¸ºæ­£å‘ä»£ç†ï¼Œæˆ‘ä»¬éœ€è¦è·å–çš„æ—¶å®ƒå‘å¤–è¿æ¥æ—¶çš„IPå’Œç«¯å£ï¼ŒIPå¾ˆå¥½è·å–ï¼Œå¯ä»Nginxç³»ç»Ÿå˜é‡é‡Œé¢è·å¾—ï¼Œè€Œä¸”ä¸ä¼šæ”¹å˜ï¼Œä½†æ˜¯ç«¯å£æ˜¯æœ‰ç³»ç»Ÿåˆ†é…çš„ï¼ŒNginxæœ¬èº«ä¹Ÿæ²¡æœ‰ç°æˆçš„å˜é‡å¯ç”¨ã€‚
 
-µ½ÕâÀïÄã¿ÉÄÜÊ×ÏÈÏëµ½µÄÊÇ£¬ÎªÊ²Ã´Òª»ñÈ¡Õâ¸ö¶Ë¿Ú£¬Õâ¸ö¶Ë¿ÚĞÅÏ¢»ù±¾Ã»ÓĞÒâÒå£¬Ò²ĞíËü¿ÉÒÔ×÷Îª»ØËİÏµÍ³·ÖÎöÖĞÊı¾İµÄÒ»²¿·Ö¡£
+åˆ°è¿™é‡Œä½ å¯èƒ½é¦–å…ˆæƒ³åˆ°çš„æ˜¯ï¼Œä¸ºä»€ä¹ˆè¦è·å–è¿™ä¸ªç«¯å£ï¼Œè¿™ä¸ªç«¯å£ä¿¡æ¯åŸºæœ¬æ²¡æœ‰æ„ä¹‰ï¼Œä¹Ÿè®¸å®ƒå¯ä»¥ä½œä¸ºå›æº¯ç³»ç»Ÿåˆ†æä¸­æ•°æ®çš„ä¸€éƒ¨åˆ†ã€‚
 
-ÎÒÃÇ½«ÉèÖÃÒ»¸öĞÂµÄ±äÁ¿$upstream_laddr, ÈÕÖ¾ÖĞ¿ÉÒÔÓÃËü´òÓ¡³öÀ´¡£Õâ¸ö±äÁ¿ÔÚngx_http_upstram.c ÖĞÉèÖÃ£¬Æängx_http_variable_t½á¹¹ÖĞµÄget_handlerº¯ÊıÎª£º
+æˆ‘ä»¬å°†è®¾ç½®ä¸€ä¸ªæ–°çš„å˜é‡$upstream_laddr, æ—¥å¿—ä¸­å¯ä»¥ç”¨å®ƒæ‰“å°å‡ºæ¥ã€‚è¿™ä¸ªå˜é‡åœ¨ngx_http_upstram.c ä¸­è®¾ç½®ï¼Œå…¶ngx_http_variable_tç»“æ„ä¸­çš„get_handlerå‡½æ•°ä¸ºï¼š
 
 		static ngx_int_t ngx_http_upstream_laddr_variable(ngx_http_request_t *r, ngx_http_variable_value_t *v, uintptr_t data) {
 
@@ -38,7 +38,7 @@ Nginx×÷ÎªÕıÏò´úÀí£¬ÎÒÃÇĞèÒª»ñÈ¡µÄÊ±ËüÏòÍâÁ¬½ÓÊ±µÄIPºÍ¶Ë¿Ú£¬IPºÜºÃ»ñÈ¡£¬¿É´ÓNginx
 
 		pc = &r->upstream->peer; 
 		if (pc == NULL){ return NGX_ERROR; } 
-		if (pc->local_sockaddr == NULL) { return NGX_ERROR;} /* ĞèÒªÈ¥ngx_peer_connection_t ½á¹¹ÖĞÌí¼Ólocal_sockaddr±äÁ¿ */
+		if (pc->local_sockaddr == NULL) { return NGX_ERROR;} /* éœ€è¦å»ngx_peer_connection_t ç»“æ„ä¸­æ·»åŠ local_sockaddrå˜é‡ */
 
 		s.len = ngx_sock_ntop(pc->local_sockaddr, s.data, s.len, 1);
 
@@ -55,7 +55,7 @@ Nginx×÷ÎªÕıÏò´úÀí£¬ÎÒÃÇĞèÒª»ñÈ¡µÄÊ±ËüÏòÍâÁ¬½ÓÊ±µÄIPºÍ¶Ë¿Ú£¬IPºÜºÃ»ñÈ¡£¬¿É´ÓNginx
 		return NGX_OK; 
 		} 
 
-Í¬Ê±£¬ÔÚ ngx_event_connect_peer(ngx_peer_connection_t *pc) Á¬½ÓºóÒªÍ¨¹ıgetsocknameº¯Êı»ñµÃIPĞÅÏ¢£¬²¢´æ´¢ÔÚlocal_sockaddr±äÁ¿ÖĞ£¬ÏñÕâÑù£º
+åŒæ—¶ï¼Œåœ¨ ngx_event_connect_peer(ngx_peer_connection_t *pc) è¿æ¥åè¦é€šè¿‡getsocknameå‡½æ•°è·å¾—IPä¿¡æ¯ï¼Œå¹¶å­˜å‚¨åœ¨local_sockaddrå˜é‡ä¸­ï¼Œåƒè¿™æ ·ï¼š
 
 		if (getsockname(c->fd, (struct sockaddr *) &sa, &len) == -1) {
     		ngx_connection_error(c, ngx_socket_errno, "getsockname() failed");
@@ -69,6 +69,6 @@ Nginx×÷ÎªÕıÏò´úÀí£¬ÎÒÃÇĞèÒª»ñÈ¡µÄÊ±ËüÏòÍâÁ¬½ÓÊ±µÄIPºÍ¶Ë¿Ú£¬IPºÜºÃ»ñÈ¡£¬¿É´ÓNginx
 
     ngx_memcpy(c->local_sockaddr, &sa, len);
     
-Õâ¶Î´úÂëÄãĞèÒª¼ÓÈëÔÚngx_event_connect_peerÖ´ĞĞÖ®ºó£¬ÎªÁËÁË½âNginxµÄupstream Ö´ĞĞµÄË³Àû£¬ÏÂÃæÓĞÒ»ÕÅ²»Ì«ÑÏ½÷µÄÁ÷³ÌÍ¼¿ÉÒÔ²Î¿¼£º
+è¿™æ®µä»£ç ä½ éœ€è¦åŠ å…¥åœ¨ngx_event_connect_peeræ‰§è¡Œä¹‹åï¼Œä¸ºäº†äº†è§£Nginxçš„upstream æ‰§è¡Œçš„é¡ºåˆ©ï¼Œä¸‹é¢æœ‰ä¸€å¼ ä¸å¤ªä¸¥è°¨çš„æµç¨‹å›¾å¯ä»¥å‚è€ƒï¼š
 
-ËùÒÔÄã¿ÉÒÔ¼ÓÔÚngx_http_upstream_connectÖ´ĞĞÖ®ºó¡£×îºóÄã¿ÉÒÔÖ±½ÓÔÚÅäÖÃÎÄ¼şÖĞÊ¹ÓÃ±äÁ¿$upstream_laddrÁË¡£
+æ‰€ä»¥ä½ å¯ä»¥åŠ åœ¨ngx_http_upstream_connectæ‰§è¡Œä¹‹åã€‚æœ€åä½ å¯ä»¥ç›´æ¥åœ¨é…ç½®æ–‡ä»¶ä¸­ä½¿ç”¨å˜é‡$upstream_laddräº†ã€‚
