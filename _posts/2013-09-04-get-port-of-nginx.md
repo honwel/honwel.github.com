@@ -7,7 +7,7 @@ tags: [正向代理, 端口]
 ---
 {% include JB/setup %}
 
-有时候你可能需要知道Nginx向外连接时用了哪个端口，这些端口是当connect(ngx_event_connect.c - ngx_event_connect_peer(ngx_peer_connection_t \*pc))时是由系统自动分配的。应用场景是这样的：
+有时候你可能需要知道Nginx向外连接时用了哪个端口，这些端口是当connect(ngx_event_connect.c - ngx_event_connect_peer(ngx_peer_connection_t \*pc))时是由系统自动分配的。
 
 Nginx作为正向代理，我们需要获取的时它向外连接时的IP和端口，IP很好获取，可从Nginx系统变量里面获得，而且不会改变，但是端口是有系统分配的，Nginx本身也没有现成的变量可用。
 
