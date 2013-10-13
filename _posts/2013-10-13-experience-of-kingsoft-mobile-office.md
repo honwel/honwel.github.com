@@ -3,7 +3,7 @@ layout: post
 title: 金山移动office使用体验
 description: "金山移动office使用体验"
 category: 技术
-tags: [产品体验 金山 移动办公]
+tags: [产品体验, 金山, 移动办公]
 ---
 {% include JB/setup %}
 
@@ -37,7 +37,7 @@ Word文档保存时会出现一个保存进度条，如图1所示，不论是从
 
 + 出现WPS的总tool bar后，点击“打开”图片的二级菜单，会看到所有文档，浏览目录等四个按钮；
 
-+ 点击“所有文档“；
++ 点击“所有文档”；
 
 + 选择一个文件。
 
