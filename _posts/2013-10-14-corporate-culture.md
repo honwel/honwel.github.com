@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 企业文化
+title: 奇葩的企业文化
 description: "奇葩的企业文化"
 category: 随笔
 tags: [企业文化, 奇葩]
