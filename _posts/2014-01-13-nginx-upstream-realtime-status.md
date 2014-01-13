@@ -1,4 +1,4 @@
-﻿---
+---
 layout: post
 title: Nginx upstream 实时状态监控
 description: "Nginx upstream 实时状态监控"
