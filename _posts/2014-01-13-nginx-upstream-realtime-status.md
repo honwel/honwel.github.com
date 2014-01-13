@@ -36,7 +36,8 @@ Nginx本身自带了stubs_status状态监控模块，并且默认是不被加入
     		return NGX_OK;
 		}
 
-		这个函数已经被设置成回调了，它负责计算并记录输出变量的值
+这个函数已经被设置成回调了，它负责计算并记录输出变量的值
+
 		static ngx_int_t
 		ngx_http_stubs_status_request_handler(ngx_http_request_t *r)
 		{
@@ -139,6 +140,7 @@ Nginx本身自带了stubs_status状态监控模块，并且默认是不被加入
 		}
 
 我们还需要一个HTTP处理函数，当有来自某个location的请求时调用该函数
+
 		static ngx_int_t
 		ngx_http_stubs_status_handler(ngx_http_request_t *r)
 		{
