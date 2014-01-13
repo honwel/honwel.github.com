@@ -18,6 +18,7 @@ Nginx本身自带了stubs_status状态监控模块，并且默认是不被加入
 部分代码解析如下：
 
 设置回调函数，放在log模块之后
+
 		static ngx_int_t
 		ngx_http_stubs_status_handler_init(ngx_conf_t \*cf)
 		{
