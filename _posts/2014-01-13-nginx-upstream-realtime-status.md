@@ -1,23 +1,23 @@
----
+ï»¿---
 layout: post
-title: Nginx upstream ÊµÊ±×´Ì¬¼à¿Ø
-description: "Nginx upstream ÊµÊ±×´Ì¬¼à¿Ø"
-category: ¼¼Êõ
-tags: [ÊµÊ± ¼à¿Ø stubs_statusÄ£¿é]
+title: Nginx upstream å®žæ—¶çŠ¶æ€ç›‘æŽ§
+description: "Nginx upstream å®žæ—¶çŠ¶æ€ç›‘æŽ§"
+category: æŠ€æœ¯
+tags: [å®žæ—¶ ç›‘æŽ§ stubs_statusæ¨¡å—]
 ---
 {% include JB/setup %}
 
-Nginx±¾Éí×Ô´øÁËstubs_status×´Ì¬¼à¿ØÄ£¿é£¬²¢ÇÒÄ¬ÈÏÊÇ²»±»¼ÓÈë±àÒëµÄ£¬ÐèÒªÓÃËüÊ±¿ÉÒÔÔÚÅäÖÃÖÐ(./configureÃüÁîÑ¡Ïî)Ìí¼Ó--with-http_stub_status_moduleÑ¡Ïî¡£Õâ¸ö×´Ì¬¼à¿ØÄ£¿é·Ç³£ÓÐÓÃ£¬ÄÜÌá¹©NginxµÄÊµÊ±ÇëÇó×´Ì¬£¬µ«È´²»ÖªµÀÎªÊ²Ã´Ã»ÓÐ±»Ìí¼Óµ½NginxµÄÄ¬ÈÏÄ£¿éÖÐ£¬ÎÒÏëÓ¦¸ÃÊÇ¿¼ÂÇµ½Ëü»á¶îÍâµÄÔö¼ÓNginxµÄÐÔÄÜÏûºÄ£¬²¢ÇÒ¼à¿ØÊÖ¶ÎÒ²²¢²»½ö´ËÒ»ÖÖ£¬¶øÇÒNginxµÄÕâ¸ö×´Ì¬¼à¿ØÄ£¿éÊÇ±È½Ï¼òµ¥µÄ£¬ËüµÄÊ¹ÓÃºÍÖ¸ÄÏ¿ÉÒÔ²Î¹Ù·½Ö¸ÄÏhttp://wiki.nginx.org/HttpStubStatusModule£¬ÕâÀïÓÐ½ÏÎªÏêÏ¸µÄËµÃ÷£¬²¢ÇÒÔÚÒ³Ãæµ×²¿»¹ÌØÒâ±ê³öÁË¿ÉÑ¡µÄÆäËû¼à¿ØNginxµÄµÚÈý·½½â¾ö·½°¸£¬ÈçCollectd
+Nginxæœ¬èº«è‡ªå¸¦äº†stubs_statusçŠ¶æ€ç›‘æŽ§æ¨¡å—ï¼Œå¹¶ä¸”é»˜è®¤æ˜¯ä¸è¢«åŠ å…¥ç¼–è¯‘çš„ï¼Œéœ€è¦ç”¨å®ƒæ—¶å¯ä»¥åœ¨é…ç½®ä¸­(./configureå‘½ä»¤é€‰é¡¹)æ·»åŠ --with-http_stub_status_moduleé€‰é¡¹ã€‚è¿™ä¸ªçŠ¶æ€ç›‘æŽ§æ¨¡å—éžå¸¸æœ‰ç”¨ï¼Œèƒ½æä¾›Nginxçš„å®žæ—¶è¯·æ±‚çŠ¶æ€ï¼Œä½†å´ä¸çŸ¥é“ä¸ºä»€ä¹ˆæ²¡æœ‰è¢«æ·»åŠ åˆ°Nginxçš„é»˜è®¤æ¨¡å—ä¸­ï¼Œæˆ‘æƒ³åº”è¯¥æ˜¯è€ƒè™‘åˆ°å®ƒä¼šé¢å¤–çš„å¢žåŠ Nginxçš„æ€§èƒ½æ¶ˆè€—ï¼Œå¹¶ä¸”ç›‘æŽ§æ‰‹æ®µä¹Ÿå¹¶ä¸ä»…æ­¤ä¸€ç§ï¼Œè€Œä¸”Nginxçš„è¿™ä¸ªçŠ¶æ€ç›‘æŽ§æ¨¡å—æ˜¯æ¯”è¾ƒç®€å•çš„ï¼Œå®ƒçš„ä½¿ç”¨å’ŒæŒ‡å—å¯ä»¥å‚å®˜æ–¹æŒ‡å—http://wiki.nginx.org/HttpStubStatusModuleï¼Œè¿™é‡Œæœ‰è¾ƒä¸ºè¯¦ç»†çš„è¯´æ˜Žï¼Œå¹¶ä¸”åœ¨é¡µé¢åº•éƒ¨è¿˜ç‰¹æ„æ ‡å‡ºäº†å¯é€‰çš„å…¶ä»–ç›‘æŽ§Nginxçš„ç¬¬ä¸‰æ–¹è§£å†³æ–¹æ¡ˆï¼Œå¦‚Collectd
 
-ÔÚÎÒµÄ¹¤×÷»·¾³ÖÐ£¬ÐèÒªÊµÊ±µÄ²é¿´backendsµÄÏìÓ¦Ê±¼ä¡¢HTTP·µ»Ø×´Ì¬Í³¼Æ¡¢·¢ËÍÇëÇóÊýµÈÍ³¼Æ£¬Ò»¿ªÊ¼ÎÒÏ£ÍûÄÜÍ¨¹ýÏñRRDToolÕâÑùµÄ¹¤¾ßÀ´Íê³É£¬µ«ÊµÊ±ÉÏËüÊÇÒÀÀµÓÚstub_statusµÄÊä³öµÄ£¬¶østub_status²¢²»ÄÜÌá¹©ÎÒÏëÒªµÄÐÅÏ¢£¬ËäÈ»ÎÒ¿ÉÒÔÔÚÈÕÖ¾ÀïÃæ´òÓ¡³öËùÓÐÎÒÏëÒªµÄÊý¾Ý£¬µ«ÕâÒâÎ¶ÎÒÒª¶ÔÈÕÖ¾ÎÄ¼þ½øÐÐ¡°¼à¿Ø¡±£¬ÏëÀ´ÏëÈ¥£¬¾Í¾ö¶¨×Ô¼ºÈ¥Ð´Ò»¸ö¼à¿ØupstreamµÄÄ£¿é¡£
+åœ¨æˆ‘çš„å·¥ä½œçŽ¯å¢ƒä¸­ï¼Œéœ€è¦å®žæ—¶çš„æŸ¥çœ‹backendsçš„å“åº”æ—¶é—´ã€HTTPè¿”å›žçŠ¶æ€ç»Ÿè®¡ã€å‘é€è¯·æ±‚æ•°ç­‰ç»Ÿè®¡ï¼Œä¸€å¼€å§‹æˆ‘å¸Œæœ›èƒ½é€šè¿‡åƒRRDToolè¿™æ ·çš„å·¥å…·æ¥å®Œæˆï¼Œä½†å®žæ—¶ä¸Šå®ƒæ˜¯ä¾èµ–äºŽstub_statusçš„è¾“å‡ºçš„ï¼Œè€Œstub_statuså¹¶ä¸èƒ½æä¾›æˆ‘æƒ³è¦çš„ä¿¡æ¯ï¼Œè™½ç„¶æˆ‘å¯ä»¥åœ¨æ—¥å¿—é‡Œé¢æ‰“å°å‡ºæ‰€æœ‰æˆ‘æƒ³è¦çš„æ•°æ®ï¼Œä½†è¿™æ„å‘³æˆ‘è¦å¯¹æ—¥å¿—æ–‡ä»¶è¿›è¡Œâ€œç›‘æŽ§â€ï¼Œæƒ³æ¥æƒ³åŽ»ï¼Œå°±å†³å®šè‡ªå·±åŽ»å†™ä¸€ä¸ªç›‘æŽ§upstreamçš„æ¨¡å—ã€‚
 
-ÏÈÒ»¶ÃÎª¿ì£¬¿´¿´×îÖÕÊµÏÖµÄ·µ»Ø½á¹û£º
+å…ˆä¸€ç¹ä¸ºå¿«ï¼Œçœ‹çœ‹æœ€ç»ˆå®žçŽ°çš„è¿”å›žç»“æžœï¼š
 
-![Í¼1 ·µ»Ø½á¹û]({{ site.img_url }}/stubs-status.png)
+![å›¾1 è¿”å›žç»“æžœ]({{ site.img_url }}/stubs-status.png)
 
-²¿·Ö´úÂë½âÎöÈçÏÂ£º
+éƒ¨åˆ†ä»£ç è§£æžå¦‚ä¸‹ï¼š
 
-ÉèÖÃ»Øµ÷º¯Êý£¬·ÅÔÚlogÄ£¿éÖ®ºó
+è®¾ç½®å›žè°ƒå‡½æ•°ï¼Œæ”¾åœ¨logæ¨¡å—ä¹‹åŽ
 		static ngx_int_t
 		ngx_http_stubs_status_handler_init(ngx_conf_t *cf)
 		{
@@ -36,7 +36,7 @@ Nginx±¾Éí×Ô´øÁËstubs_status×´Ì¬¼à¿ØÄ£¿é£¬²¢ÇÒÄ¬ÈÏÊÇ²»±»¼ÓÈë±àÒëµÄ£¬ÐèÒªÓÃËüÊ±¿ÉÒ
     		return NGX_OK;
 		}
 
-		Õâ¸öº¯ÊýÒÑ¾­±»ÉèÖÃ³É»Øµ÷ÁË£¬Ëü¸ºÔð¼ÆËã²¢¼ÇÂ¼Êä³ö±äÁ¿µÄÖµ
+		è¿™ä¸ªå‡½æ•°å·²ç»è¢«è®¾ç½®æˆå›žè°ƒäº†ï¼Œå®ƒè´Ÿè´£è®¡ç®—å¹¶è®°å½•è¾“å‡ºå˜é‡çš„å€¼
 		static ngx_int_t
 		ngx_http_stubs_status_request_handler(ngx_http_request_t *r)
 		{
@@ -138,7 +138,7 @@ Nginx±¾Éí×Ô´øÁËstubs_status×´Ì¬¼à¿ØÄ£¿é£¬²¢ÇÒÄ¬ÈÏÊÇ²»±»¼ÓÈë±àÒëµÄ£¬ÐèÒªÓÃËüÊ±¿ÉÒ
     		return NGX_OK; 
 		}
 
-ÎÒÃÇ»¹ÐèÒªÒ»¸öHTTP´¦Àíº¯Êý£¬µ±ÓÐÀ´×ÔÄ³¸ölocationµÄÇëÇóÊ±µ÷ÓÃ¸Ãº¯Êý
+æˆ‘ä»¬è¿˜éœ€è¦ä¸€ä¸ªHTTPå¤„ç†å‡½æ•°ï¼Œå½“æœ‰æ¥è‡ªæŸä¸ªlocationçš„è¯·æ±‚æ—¶è°ƒç”¨è¯¥å‡½æ•°
 		static ngx_int_t
 		ngx_http_stubs_status_handler(ngx_http_request_t *r)
 		{
@@ -254,7 +254,7 @@ Nginx±¾Éí×Ô´øÁËstubs_status×´Ì¬¼à¿ØÄ£¿é£¬²¢ÇÒÄ¬ÈÏÊÇ²»±»¼ÓÈë±àÒëµÄ£¬ÐèÒªÓÃËüÊ±¿ÉÒ
     		return ngx_http_output_filter(r, &out);
 		}
 
-ÎªÁËÈÃ¸ÃÄ£¿éÔÚ×îºó±»Ö´ÐÐ(ÕâÑù²ÅÄÜ±£Ö¤Äã»ñÈ¡µÄ½á¹ûÊÇ×îÖÕ½á¹û£¬ÒòÎªÒì²½HTTPµÄÔµ¹Ê£¬ÊÂ¼þ»á¶à´Îµ½´ï)£¬»¹ÐèÒªÔÚÅäÖÃÖÐ×öÐ©Ð¡´¦Àí£º
+ä¸ºäº†è®©è¯¥æ¨¡å—åœ¨æœ€åŽè¢«æ‰§è¡Œ(è¿™æ ·æ‰èƒ½ä¿è¯ä½ èŽ·å–çš„ç»“æžœæ˜¯æœ€ç»ˆç»“æžœï¼Œå› ä¸ºå¼‚æ­¥HTTPçš„ç¼˜æ•…ï¼Œäº‹ä»¶ä¼šå¤šæ¬¡åˆ°è¾¾)ï¼Œè¿˜éœ€è¦åœ¨é…ç½®ä¸­åšäº›å°å¤„ç†ï¼š
 		ngx_addon_name=ngx_http_stubs_status_module
 		# Make module to last execute
 		HTTP_MODULES2="$HTTP_MODULES"
@@ -262,6 +262,6 @@ Nginx±¾Éí×Ô´øÁËstubs_status×´Ì¬¼à¿ØÄ£¿é£¬²¢ÇÒÄ¬ÈÏÊÇ²»±»¼ÓÈë±àÒëµÄ£¬ÐèÒªÓÃËüÊ±¿ÉÒ
 
 		NGX_ADDON_SRCS="$NGX_ADDON_SRCS $ngx_addon_dir/ngx_http_stubs_status_module.c"
 
-ºÃÁË£¬Ä¿Ç°¸ÃÄ£¿é»¹´æÔÚ²»ÉÙÎÊÌâ£¬Èç£ºµ±Ç°ÊÇ°´ÕÕÃ¿·ÖÖÓ¼ÆËãÆ½¾ùÇëÇóÊýºÍÆ½¾ùÑÓÊ±£¬ÁíÍâ»¹²»Ö§³Ö¶à¸öserver(vhost)µÄ¼à¿Ø£¬ÎÒ»áÔÚÒÔºóÌí¼ÓÉÏÀ´¡£
+å¥½äº†ï¼Œç›®å‰è¯¥æ¨¡å—è¿˜å­˜åœ¨ä¸å°‘é—®é¢˜ï¼Œå¦‚ï¼šå½“å‰æ˜¯æŒ‰ç…§æ¯åˆ†é’Ÿè®¡ç®—å¹³å‡è¯·æ±‚æ•°å’Œå¹³å‡å»¶æ—¶ï¼Œå¦å¤–è¿˜ä¸æ”¯æŒå¤šä¸ªserver(vhost)çš„ç›‘æŽ§ï¼Œæˆ‘ä¼šåœ¨ä»¥åŽæ·»åŠ ä¸Šæ¥ã€‚
 
-Ô´Âë¿É´Ó[github](https://github.com/honwel)»ñÈ¡£¬Èç¹ûÄã¾õµÃ¸ÃÄ£¿éÓÐÓÃ£¬²¢ÇÒ»¹ÔÚÊ¹ÓÃ¹ý³ÌÖÐ·¢ÏÖÁËÎÊÌâ£¬ÄÇÃ´Äã¿ÉÒÔÍ¨¹ýÓÊ¼þ°ÑÄãÓöµ½µÄÎÊÌâ»òÕß´úÂëÖÐµÄ´íÎó×ö¸ö¼òµ¥µÄÃèÊö£¬È»ºó·¢ËÍ¸øÎÒ£¬·Ç³£¸ÐÐ»¡£
+æºç å¯ä»Ž[github](https://github.com/honwel)èŽ·å–ï¼Œå¦‚æžœä½ è§‰å¾—è¯¥æ¨¡å—æœ‰ç”¨ï¼Œå¹¶ä¸”è¿˜åœ¨ä½¿ç”¨è¿‡ç¨‹ä¸­å‘çŽ°äº†é—®é¢˜ï¼Œé‚£ä¹ˆä½ å¯ä»¥é€šè¿‡é‚®ä»¶æŠŠä½ é‡åˆ°çš„é—®é¢˜æˆ–è€…ä»£ç ä¸­çš„é”™è¯¯åšä¸ªç®€å•çš„æè¿°ï¼Œç„¶åŽå‘é€ç»™æˆ‘ï¼Œéžå¸¸æ„Ÿè°¢ã€‚
