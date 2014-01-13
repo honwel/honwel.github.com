@@ -3,11 +3,11 @@ layout: post
 title: Nginx upstream 实时状态监控
 description: "Nginx upstream 实时状态监控"
 category: 技术
-tags: [实时, 监控, stubs_status模块]
+tags: [实时, 监控, Nginx模块]
 ---
 {% include JB/setup %}
 
-Nginx本身自带了stubs\_status状态监控模块，并且默认是不被加入编译的，需要用它时可以在配置中(./configure命令选项)添加--with-http\_stub\_status_module选项。这个状态监控模块非常有用，能提供Nginx的实时请求状态，但却不知道为什么没有被添加到Nginx的默认模块中，我想应该是考虑到它会额外的增加Nginx的性能消耗，并且监控手段也并不仅此一种，而且Nginx的这个状态监控模块是比较简单的，它的使用和指南可以参考[官方指南](http://wiki.nginx.org/HttpStubStatusModule)，这里有较为详细的说明，并且在页面底部还特意标出了可选的其他监控Nginx的第三方解决方案，如Collectd
+Nginx本身自带了stubs\_status状态监控模块，并且默认是不被加入编译的，需要用它时可以在配置中(./configure命令选项)添加--with-http\_stub\_status_module选项。这个状态监控模块非常有用，能提供Nginx的实时请求状态，但却不知道为什么没有被添加到Nginx的默认模块中，我想应该是考虑到它会额外的增加Nginx的性能消耗，并且监控手段也并不仅此一种，而且Nginx的这个状态监控模块是比较简单的，它的使用和指南可以参考[官方指南](http://wiki.nginx.org/HttpStubStatusModule)，这里有较为详细的说明，并且在页面底部还特意标出了可选的其他监控Nginx的第三方解决方案，如Collectd。
 
 在我的工作环境中，需要实时的查看backends的响应时间、HTTP返回状态统计、发送请求数等统计，一开始我希望能通过像RRDTool这样的工具来完成，但实时上它是依赖于stub\_status的输出的，而stub_status并不能提供我想要的信息，虽然我可以在日志里面打印出所有我想要的数据，但这意味我要对日志文件进行“监控”，想来想去，就决定自己去写一个监控upstream的模块。
 
@@ -184,12 +184,12 @@ Nginx本身自带了stubs\_status状态监控模块，并且默认是不被加�
         		}
     		}
 
-    sscf = ngx_http_get_module_main_conf(r, ngx_http_stubs_status_module);
-    if (NULL == sscf) {
-        return NGX_ERROR;
-    }
+    		sscf = ngx_http_get_module_main_conf(r, ngx_http_stubs_status_module);
+    		if (NULL == sscf) {
+        		return NGX_ERROR;
+    		}
 
-    size = sizeof("Uptime: \n") + NGX_ATOMIC_T_LEN
+    		size = sizeof("Uptime: \n") + NGX_ATOMIC_T_LEN
          + sizeof("upstream requests: \n")
          + sizeof("upstream sent: \n")
          + sizeof("upstream recv: \n")
@@ -257,6 +257,7 @@ Nginx本身自带了stubs\_status状态监控模块，并且默认是不被加�
 		}
 
 为了让该模块在最后被执行(这样才能保证你获取的结果是最终结果，因为异步HTTP的缘故，事件会多次到达)，还需要在配置中做些小处理：
+
 		ngx_addon_name=ngx_http_stubs_status_module
 		# Make module to last execute
 		HTTP_MODULES2="$HTTP_MODULES"
