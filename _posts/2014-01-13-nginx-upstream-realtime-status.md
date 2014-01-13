@@ -1,15 +1,15 @@
 ---
 layout: post
-title: Nginxupstream实时状态监控
-description: "Nginxupstream实时状态监控"
+title: Nginx upstream 实时状态监控
+description: "Nginx upstream 实时状态监控"
 category: 技术
 tags: [实时, 监控, Nginx模块]
 ---
 {% include JB/setup %}
 
-Nginx本身自带了stubs\_status状态监控模块，并且默认是不被加入编译的，需要用它时可以在配置中(./configure命令选项)添加--with-http\_stub\_status_module选项。这个状态监控模块非常有用，能提供Nginx的实时请求状态，但却不知道为什么没有被添加到Nginx的默认模块中，我想应该是考虑到它会额外的增加Nginx的性能消耗，并且监控手段也并不仅此一种，而且Nginx的这个状态监控模块是比较简单的，它的使用和指南可以参考[官方指南](http://wiki.nginx.org/HttpStubStatusModule)，这里有较为详细的说明，并且在页面底部还特意标出了可选的其他监控Nginx的第三方解决方案，如Collectd。
+Nginx本身自带了stubs_status状态监控模块，并且默认是不被加入编译的，需要用它时可以在配置中(./configure命令选项)添加--with-http_stub_status_module选项。这个状态监控模块非常有用，能提供Nginx的实时请求状态，但却不知道为什么没有被添加到Nginx的默认模块中，我想应该是考虑到它会额外的增加Nginx的性能消耗，并且监控手段也并不仅此一种，而且Nginx的这个状态监控模块是比较简单的，它的使用和指南可以参考[官方指南](http://wiki.nginx.org/HttpStubStatusModule)，这里有较为详细的说明，并且在页面底部还特意标出了可选的其他监控Nginx的第三方解决方案，如Collectd。
 
-在我的工作环境中，需要实时的查看backends的响应时间、HTTP返回状态统计、发送请求数等统计，一开始我希望能通过像RRDTool这样的工具来完成，但实时上它是依赖于stub\_status的输出的，而stub_status并不能提供我想要的信息，虽然我可以在日志里面打印出所有我想要的数据，但这意味我要对日志文件进行“监控”，想来想去，就决定自己去写一个监控upstream的模块。
+在我的工作环境中，需要实时的查看backends的响应时间、HTTP返回状态统计、发送请求数等统计，一开始我希望能通过像RRDTool这样的工具来完成，但实时上它是依赖于stub_status的输出的，而stub_status并不能提供我想要的信息，虽然我可以在日志里面打印出所有我想要的数据，但这意味我要对日志文件进行“监控”，想来想去，就决定自己去写一个监控upstream的模块。
 
 先一睹为快，看看最终实现的返回结果：
 
@@ -19,10 +19,10 @@ Nginx本身自带了stubs\_status状态监控模块，并且默认是不被加�
 
 设置回调函数，放在log模块之后
 		static ngx_int_t
-		ngx_http_stubs_status_handler_init(ngx_conf_t *cf)
+		ngx_http_stubs_status_handler_init(ngx_conf_t \*cf)
 		{
-    		ngx_http_handler_pt         *h;
-    		ngx_http_core_main_conf_t   *cmcf;
+    		ngx_http_handler_pt         \*h;
+    		ngx_http_core_main_conf_t   \*cmcf;
 
     		cmcf = ngx_http_conf_get_module_main_conf(cf, ngx_http_core_module);
 
@@ -31,7 +31,7 @@ Nginx本身自带了stubs\_status状态监控模块，并且默认是不被加�
         	return NGX_ERROR;
     		}
     		/* set callback, after log phase */
-    		*h = ngx_http_stubs_status_request_handler;
+    		\*h = ngx_http_stubs_status_request_handler;
 
     		return NGX_OK;
 		}
@@ -39,12 +39,12 @@ Nginx本身自带了stubs\_status状态监控模块，并且默认是不被加�
 这个函数已经被设置成回调了，它负责计算并记录输出变量的值
 
 		static ngx_int_t
-		ngx_http_stubs_status_request_handler(ngx_http_request_t *r)
+		ngx_http_stubs_status_request_handler(ngx_http_request_t \*r)
 		{
-    		ngx_http_stubs_status_conf_t        *sscf;
-    		ngx_http_stubs_status_ctx_t         *ctx;
+    		ngx_http_stubs_status_conf_t        \*sscf;
+    		ngx_http_stubs_status_ctx_t         \*ctx;
 
-    		ngx_http_upstream_state_t           *state;
+    		ngx_http_upstream_state_t           \*state;
     		size_t          response_length = 0;
     		ngx_atomic_t    response_time = 0;
 
@@ -142,17 +142,17 @@ Nginx本身自带了stubs\_status状态监控模块，并且默认是不被加�
 我们还需要一个HTTP处理函数，当有来自某个location的请求时调用该函数
 
 		static ngx_int_t
-		ngx_http_stubs_status_handler(ngx_http_request_t *r)
+		ngx_http_stubs_status_handler(ngx_http_request_t \*r)
 		{
     		size_t      size;
     		ngx_int_t   rc;
-    		ngx_buf_t  *b;
+    		ngx_buf_t  \*b;
     		ngx_chain_t out;
 
    			ngx_time_t *time;    
 
-    		ngx_http_stubs_status_conf_t *sscf;
-    		ngx_http_stubs_status_ctx_t  *ctx;
+    		ngx_http_stubs_status_conf_t \*sscf;
+    		ngx_http_stubs_status_ctx_t  \*ctx;
 
     		ngx_atomic_int_t rq, st, rv, pr, at;
     		ngx_atomic_int_t r2, r3, r4, r5;
@@ -190,18 +190,18 @@ Nginx本身自带了stubs\_status状态监控模块，并且默认是不被加�
     		}
 
     		size = sizeof("Uptime: \n") + NGX_ATOMIC_T_LEN
-         + sizeof("upstream requests: \n")
-         + sizeof("upstream sent: \n")
-         + sizeof("upstream recv: \n")
-         + sizeof("upstream reqs/per: \n")
-         + sizeof("upstream resp_time/avg(ms): \n")
-         + sizeof("-------------------------------------\n")
-         + 8 + 5 * NGX_ATOMIC_T_LEN
-         + sizeof("reqs_20x: \n") 
-         + sizeof("reqs_30x: \n")
-         + sizeof("reqs_40x: \n")
-         + sizeof("reqs_50x: \n")
-         + 4 * NGX_ATOMIC_T_LEN;
+         	+ sizeof("upstream requests: \n")
+         	+ sizeof("upstream sent: \n")
+         	+ sizeof("upstream recv: \n")
+         	+ sizeof("upstream reqs/per: \n")
+         	+ sizeof("upstream resp_time/avg(ms): \n")
+         	+ sizeof("-------------------------------------\n")
+         	+ 8 + 5 * NGX_ATOMIC_T_LEN
+         	+ sizeof("reqs_20x: \n") 
+         	+ sizeof("reqs_30x: \n")
+         	+ sizeof("reqs_40x: \n")
+         	+ sizeof("reqs_50x: \n")
+         	+ 4 * NGX_ATOMIC_T_LEN;
 
     		/* create buf */
     		b = ngx_create_temp_buf(r->pool, size);
