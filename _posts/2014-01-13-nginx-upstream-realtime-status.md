@@ -7,7 +7,7 @@ tags: [实时, 监控, Nginx模块]
 ---
 {% include JB/setup %}
 
-Nginx本身自带了stub_status状态监控模块，但不是默认的模块，需要用它时可以在配置中(./configure命令选项)添加--with-http_stub_status_module选项。这个状态监控模块比较有用，能提供显示Nginx的实时请求状态，它的使用和指南可以参考[官方指南](http://wiki.nginx.org/HttpStubStatusModule)，这里有较为详细的说明，并且在页面底部还特意标出了可选的其他监控Nginx的第三方解决方案，如Collectd等。
+Nginx本身自带了stub_status状态监控模块，但不被默认启用，需要用它时可以在配置中(./configure命令选项)添加--with-http_stub_status_module选项。这个状态监控模块比较有用，能提供显示Nginx的实时请求状态，它的使用和指南可以参考[官方指南](http://wiki.nginx.org/HttpStubStatusModule)，这里有较为详细的说明，并且在页面底部还特意标出了可选的其他监控Nginx的第三方解决方案，如Collectd等。
 
 在我的工作环境中，需要实时的查看backends的响应时间、HTTP返回状态统计、发送请求数等统计，一开始我希望能通过像RRDTool这样的工具来完成，但事实上它依赖于stub_status的输出，但stub_status并不能提供更详细的状态信息，虽然我可以在日志里面打印出所有我想要的数据，所以决定自己动手去实现一个监控模块。
 
