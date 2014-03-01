@@ -1,4 +1,4 @@
-﻿---
+---
 layout: post
 title: Nginx 出现 timeout 错误
 description: "Nginx 出现 timeout 错误"
