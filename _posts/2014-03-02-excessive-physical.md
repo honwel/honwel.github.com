@@ -1,4 +1,4 @@
-﻿---
+---
 layout: post
 title: 过度体检
 description: "excessive physical"
