@@ -1,4 +1,4 @@
-﻿
+﻿---
 layout: post
 title: 黑客与画家
 description: "黑客与画家"
