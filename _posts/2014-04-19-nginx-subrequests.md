@@ -1,4 +1,4 @@
-﻿---
+---
 layout: post
 title: 用Lua脚本编写Nginx的subrequest
 description: "用Lua脚本编写Nginx的subrequest"
