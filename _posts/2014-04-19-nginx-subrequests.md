@@ -43,9 +43,9 @@ tags: [Nginx, Lua, Subrequest]
 	local args = ngx.req.get_uri_args();
 
 	if action == "POST" then
-    		arry = {method=ngx.HTTP_POST, body=data};
+    	arry = {method=ngx.HTTP_POST, body=data};
 	else
-    		arry = {method=ngx.HTTP_GET};
+    	arry = {method=ngx.HTTP_GET};
 	end
 
 	-- issue subrequest.
