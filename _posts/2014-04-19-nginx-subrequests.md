@@ -1,4 +1,4 @@
----
+﻿
 layout: post
 title: 用Lua脚本编写Nginx的subrequest
 description: "用Lua脚本编写Nginx的subrequest"
@@ -60,6 +60,8 @@ tags: [Nginx, Lua, Subrequest]
     	...................................
     	...................................
 
-为了能让Nginx执行上面的代码，你可能需要参考[这里](http://huoding.com/2012/08/31/156)的说明进行安装，或者你直接安装最新的[openresty](http://openresty.org/)也是可以的。上面贴出的源码中有很多nginx lua API的调用，你可以通过查阅官方的文档进行了解，比如ngx.location.capture_multi是发起多个子请求、获取URL参数ngx.req.get_uri_args，返回是Lua的table类型。是不是很简单？你也试试吧。BTY:Jekyll语法中贴代码的处理我总是写的不好，每次更新博客时花在代码格式上的时间很多，很痛苦，上面代码还是排列不整齐啊！
+为了能让Nginx执行上面的代码，你可能需要参考[这里](http://huoding.com/2012/08/31/156)的说明进行安装，或者你直接安装最新的[openresty](http://openresty.org/)也是可以的。上面贴出的源码中有很多nginx lua API的调用，你可以通过查阅官方的文档进行了解，比如ngx.location.capture_multi是发起多个子请求、获取URL参数ngx.req.get_uri_args，返回是Lua的table类型。是不是很简单？你也试试吧。
+
+BTW:Jekyll语法中贴代码的处理我总是写的不好，每次更新博客时花在代码格式上的时间很多，很痛苦，上面代码还是排列不整齐啊！
 
 
