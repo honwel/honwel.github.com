@@ -44,8 +44,6 @@ tags: [Nginx, Lua, Subrequest]
 
 	if action == "POST" then
     	arry = {method=ngx.HTTP_POST, body=data};
-	else
-    	arry = {method=ngx.HTTP_GET};
 	end
 
 	-- issue subrequest.
