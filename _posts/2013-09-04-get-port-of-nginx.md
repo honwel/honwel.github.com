@@ -3,7 +3,7 @@ layout: post
 title: 用Nginx做正向代理时获取其向外连接的IP和端口
 description: "获取向外连接的IP和端口"
 category: 技术
-tags: [正向代理, 端口]
+tags: [正向代理, 端口, Nginx]
 ---
 {% include JB/setup %}
 

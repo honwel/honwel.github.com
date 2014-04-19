@@ -3,7 +3,7 @@ layout: post
 title: Nginx upstream 实时状态监控
 description: "Nginx upstream 实时状态监控"
 category: 技术
-tags: [实时, 监控, Nginx模块]
+tags: [实时, 监控, Nginx, 模块]
 ---
 {% include JB/setup %}
 
