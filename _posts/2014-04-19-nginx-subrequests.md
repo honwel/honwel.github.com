@@ -14,19 +14,19 @@ tags: [Nginx, Lua, Subrequest]
 这里先贴出Lua脚本源码，首先是nginx.conf中的配置：
 
 		location / {
-    			content_by_lua_file  /usr/local/nginx/conf/subrequest.lua; # 加载lua脚本文件
+    			content_by_lua_file  /usr/local/nginx/conf/subrequest.lua; \# 加载lua脚本文件
     		}
-    		location /sub2 { # 发出的子请求location
-      			# 重写URL，主要是去掉sub2，并保留其他的参数信息，注意一定要使用break，保存不会多次重定向
+    		location /sub2 { \# 发出的子请求location
+      			\# 重写URL，主要是去掉sub2，并保留其他的参数信息，注意一定要使用break，保存不会多次重定向
       			rewrite ^/sub2(.\*)$ $1 break;  
       			proxy_pass http://192.168.1.1:12345/;
     		}
-    		location /sub1 { # 发出的子请求location
+    		location /sub1 { \# 发出的子请求location
       			rewrite ^/sub1(.\*)$ $1 break;
       			proxy_pass http://192.168.1.2:12345/;
     		}
 
-    		location /sub3 { # 发出的子请求location
+    		location /sub3 { \# 发出的子请求location
       			rewrite ^/sub3(.\*)$ $1 break;
       		proxy_pass http://192.168.1.3:12345/;
     		}
