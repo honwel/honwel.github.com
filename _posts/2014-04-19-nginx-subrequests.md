@@ -33,14 +33,14 @@ tags: [Nginx, Lua, Subrequest]
 
 然后是subrequest.lua脚本：
 
-    local action = ngx.var.request_method;
-		-- important very much!  #这里非常重要，一开始我没有添加这行，导致没有成功发出子请求
-		ngx.req.read_body();
+    	local action = ngx.var.request_method;
+	-- important very much!  #这里非常重要，一开始我没有添加这行，导致没有成功发出子请求
+	ngx.req.read_body();
 
-		-- get request body
-		local data = ngx.req.get_body_data();
-		-- get request uri's args
-		local args = ngx.req.get_uri_args();
+	-- get request body
+	local data = ngx.req.get_body_data();
+	-- get request uri's args
+	local args = ngx.req.get_uri_args();
 
 		if action == "POST" then
     	arry = {method=ngx.HTTP_POST, body=data};
@@ -48,19 +48,19 @@ tags: [Nginx, Lua, Subrequest]
     	arry = {method=ngx.HTTP_GET};
 		end
 
-		-- issue subrequest.
-		local res1,res2,res3 = ngx.location.capture_multi({
+	-- issue subrequest.
+	local res1,res2,res3 = ngx.location.capture_multi({
     	{"/sub1"..ngx.var.request_uri, {method = ngx.HTTP_POST, body=data}},
     	{"/sub2"..ngx.var.request_uri, {method = ngx.HTTP_POST, body=data}},
     	{"/sub3"..ngx.var.request_uri, {method = ngx.HTTP_POST, body=data}}
     	-- TODO: N's subrequests
-		})
+	})
 
-		-- 对返回结果进行业务处理
-		if res1.status == ngx.HTTP_OK then
+	-- 对返回结果进行业务处理
+	if res1.status == ngx.HTTP_OK then
     	local body = res1.body;
-    ...................................
-    ...................................
+    	...................................
+    	...................................
 
 为了能让Nginx执行上面的代码，你需要按照[这里](http://huoding.com/2012/08/31/156)的说明进行安装，或者你直接安装最新的[openresty](http://openresty.org/)也是可以的。上面有很多nginx lua API的调用，你可以通过查阅官方的文档进行了解，比如ngx.location.capture_multi是发起多个子请求、获取URL参数ngx.req.get_uri_args，返回是Lua的table类型。是不是很简单？你也试试吧。
 
