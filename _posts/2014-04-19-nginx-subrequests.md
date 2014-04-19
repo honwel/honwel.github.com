@@ -1,4 +1,4 @@
-﻿
+---
 layout: post
 title: 用Lua脚本编写Nginx的subrequest
 description: "用Lua脚本编写Nginx的subrequest"
@@ -13,7 +13,7 @@ tags: [Nginx, Lua, Subrequest]
 
 这里先贴出Lua脚本源码，首先是nginx.conf中的配置：
 
-			location / {
+	location / {
     		content_by_lua_file  /usr/local/nginx/conf/subrequest.lua; # 加载lua脚本文件
     	}
     	location /sub2 { # 发出的子请求location
@@ -33,7 +33,7 @@ tags: [Nginx, Lua, Subrequest]
 
 然后是subrequest.lua脚本：
 
-  local action = ngx.var.request_method;
+  	local action = ngx.var.request_method;
 	-- important very much!  #这里非常重要，一开始我没有添加这行，导致没有成功发出子请求
 	ngx.req.read_body();
 
