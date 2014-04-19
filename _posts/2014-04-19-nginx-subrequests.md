@@ -1,4 +1,4 @@
----
+﻿
 layout: post
 title: 用Lua脚本编写Nginx的subrequest
 description: "用Lua脚本编写Nginx的subrequest"
@@ -13,15 +13,15 @@ tags: [Nginx, Lua, Subrequest]
 
 这里先贴出Lua脚本源码，首先是nginx.conf中的配置：
 
-	location / {
+			location / {
     		content_by_lua_file  /usr/local/nginx/conf/subrequest.lua; # 加载lua脚本文件
     	}
-    	location \/sub2 { # 发出的子请求location
+    	location /sub2 { # 发出的子请求location
       		# 重写URL，主要是去掉sub2，并保留其他的参数信息，注意一定要使用break，保存不会多次重定向
       		rewrite ^/sub2(.*)$ $1 break;  
       		proxy_pass http://192.168.1.1:12345/;
     	}
-    	location \/sub1 { # 发出的子请求location
+    	location /sub1 { # 发出的子请求location
       		rewrite ^/sub1(.*)$ $1 break;
       		proxy_pass http://192.168.1.2:12345/;
     	}
@@ -33,7 +33,7 @@ tags: [Nginx, Lua, Subrequest]
 
 然后是subrequest.lua脚本：
 
-    	local action = ngx.var.request_method;
+  local action = ngx.var.request_method;
 	-- important very much!  #这里非常重要，一开始我没有添加这行，导致没有成功发出子请求
 	ngx.req.read_body();
 
@@ -62,6 +62,6 @@ tags: [Nginx, Lua, Subrequest]
     	...................................
     	...................................
 
-为了能让Nginx执行上面的代码，你需要按照[这里](http://huoding.com/2012/08/31/156)的说明进行安装，或者你直接安装最新的[openresty](http://openresty.org/)也是可以的。上面有很多nginx lua API的调用，你可以通过查阅官方的文档进行了解，比如ngx.location.capture_multi是发起多个子请求、获取URL参数ngx.req.get_uri_args，返回是Lua的table类型。是不是很简单？你也试试吧。
+为了能让Nginx执行上面的代码，你需要按照[这里](http://huoding.com/2012/08/31/156)的说明进行安装，或者你直接安装最新的[openresty](http://openresty.org/)也是可以的。上面贴出的源码中有很多nginx lua API的调用，你可以通过查阅官方的文档进行了解，比如ngx.location.capture_multi是发起多个子请求、获取URL参数ngx.req.get_uri_args，返回是Lua的table类型。是不是很简单？你也试试吧。
 
 
